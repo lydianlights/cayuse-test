@@ -1,9 +1,9 @@
 export class GoogleMapsAPIService {
-  public async getTimeZone(zipCode: string): Promise<string> {
+  public async getTimeZone(lat: number, long: number): Promise<string> {
     return null;
   }
 
-  public async getElevation(zipCode: string): Promise<number> {
+  public async getElevation(lat: number, long: number): Promise<number> {
     return null;
   }
 }

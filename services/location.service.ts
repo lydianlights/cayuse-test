@@ -10,19 +10,15 @@ export class LocationService {
     if(!this.validateZipCode(zipCode)) {
       return null;
     }
-    // Run needed queries in parallel
-    const apiResponses = await Promise.all([
-      this.openWeather.getCityAndTemp(zipCode),
-      this.googleMaps.getTimeZone(zipCode),
-      this.googleMaps.getElevation(zipCode)
-    ]);
-    // Decode responses from Promise.all's arcane result array
+    const weatherInfo = await this.openWeather.getLocationInfo(zipCode);
+    const timezone = await this.googleMaps.getTimeZone(weatherInfo.lat, weatherInfo.long);
+    const elevation = await this.googleMaps.getElevation(weatherInfo.lat, weatherInfo.long);
     return new LocationData(
       zipCode,
-      apiResponses[0].cityName,
-      apiResponses[0].currentTempF,
-      apiResponses[1],
-      apiResponses[2]
+      weatherInfo.cityName,
+      weatherInfo.currentTempF,
+      timezone,
+      elevation
     );
   }
 

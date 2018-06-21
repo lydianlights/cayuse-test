@@ -35,12 +35,14 @@ describe("LocationService", function() {
     it("should return a LocationData object", async function() {
       const testZip = "97304";
       td.when(locationService.validateZipCode(testZip)).thenReturn(true);
-      td.when(openWeather.getCityAndTemp(testZip)).thenResolve({
+      td.when(openWeather.getLocationInfo(testZip)).thenResolve({
         cityName: "Salem",
-        currentTempF: 80
+        currentTempF: 80,
+        lat: 45,
+        long: -123
       });
-      td.when(googleMaps.getTimeZone(testZip)).thenResolve("PST");
-      td.when(googleMaps.getElevation(testZip)).thenResolve(154);
+      td.when(googleMaps.getTimeZone(45, -123)).thenResolve("PST");
+      td.when(googleMaps.getElevation(45, -123)).thenResolve(154);
 
       const locationData = await locationService.getLocationDataFromZIP(testZip);
         

@@ -1,5 +1,12 @@
 export class OpenWeatherAPIService {
-  public async getCityAndTemp(zipCode: string): Promise<any> {
+  public async getLocationInfo(zipCode: string): Promise<OpenWeatherLocationInfo> {
     return null;
   }
+}
+
+export interface OpenWeatherLocationInfo {
+  cityName: string;
+  currentTempF: number;
+  lat: number;
+  long: number;
 }
