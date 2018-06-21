@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon --watch *.ts --exec ts-node -r tsconfig-paths/register app.ts",
-    "test": "mocha -r ts-node/register -r tsconfig-paths/register ./**/*.spec.ts"
+    "start": "set NODE_ENV=production&& ts-node -r tsconfig-paths/register app.ts",
+    "dev": "set NODE_ENV=development&& nodemon --watch *.ts --exec ts-node -r tsconfig-paths/register app.ts",
+    "test": "set NODE_ENV=testing&& mocha -r ts-node/register -r tsconfig-paths/register ./**/*.spec.ts"
   },
   "author": "Rane Fields",
   "license": "ISC",
