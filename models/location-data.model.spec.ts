@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { LocationData } from './location-data.model';
+import { LocationData } from 'models/location-data.model';
 
 describe("LocationData model", function() {
   describe("constructor", function() {
@@ -8,7 +8,7 @@ describe("LocationData model", function() {
       const zipCode = "97304";
       const cityName = "Salem";
       const currentTempF = 80;
-      const timeZone = "PT"
+      const timeZone = "PST"
       const elevationFt = 154;
 
       const testLocationData = new LocationData(
