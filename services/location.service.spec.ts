@@ -39,7 +39,7 @@ describe("LocationService", function() {
         cityName: "Salem",
         currentTempF: 80,
         lat: 45,
-        long: -123
+        lon: -123
       });
       td.when(googleMaps.getTimeZone(45, -123)).thenResolve("PST");
       td.when(googleMaps.getElevation(45, -123)).thenResolve(154);
