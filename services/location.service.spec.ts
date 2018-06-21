@@ -13,8 +13,8 @@ describe("LocationService", function() {
 
   beforeEach(function() {
     locationService = new LocationService();
-    openWeather = td.object<OpenWeatherAPIService>(new OpenWeatherAPIService);
-    googleMaps = td.object<GoogleMapsAPIService>(new GoogleMapsAPIService);
+    openWeather = td.object(new OpenWeatherAPIService);
+    googleMaps = td.object(new GoogleMapsAPIService);
     // Stub private services
     (locationService as any).openWeather = openWeather;
     (locationService as any).googleMaps = googleMaps;
