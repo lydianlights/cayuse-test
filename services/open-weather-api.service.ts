@@ -7,7 +7,7 @@ export class OpenWeatherAPIService {
         qs: {
           zip: `${zipCode},us`,
           units: 'imperial',
-          APPID: `a6a9d2af91b7a99c2cec7815f142c426`
+          APPID: `${process.env.OPEN_WEATHER_API_KEY}`
         }
       });
       const data = JSON.parse(response);

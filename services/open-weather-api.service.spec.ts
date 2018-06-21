@@ -1,8 +1,13 @@
 import 'mocha';
 import { expect } from 'chai';
+import dotenv from 'dotenv';
 import { OpenWeatherAPIService } from 'services/open-weather-api.service';
 
 describe("OpenWeatherAPIService integration tests", function() {
+  this.beforeAll(function() {
+    dotenv.config();
+  });
+
   let openWeather: OpenWeatherAPIService;
 
   beforeEach(function () {
