@@ -14,6 +14,13 @@ export class LocationController {
         return;
       }
       let locationData = await this.locationService.getLocationDataFromZIP(req.query.zipCode);
+      if(!locationData) {
+        res.status(400);
+        res.json({
+          error: "Provided zipcode could not be parsed"
+        });
+        return;
+      }
       res.status(200);
       res.json(locationData);
       return;

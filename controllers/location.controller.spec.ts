@@ -86,6 +86,21 @@ describe("LocationController", function() {
       expect(data.error).to.not.be.null;
     });
 
+    it("should return status 400 if zipCode can't be parsed", async function() {
+      requestOpts.query.zipCode = "aaaaa";
+      td.when(locationService.getLocationDataFromZIP("aaaaa"))
+        .thenResolve(null);
+
+      const req = httpMocks.createRequest(requestOpts);
+      const res = httpMocks.createResponse();
+
+      await locationController.getLocationData(req, res);
+      const data = JSON.parse(res._getData());
+
+      expect(res.statusCode).to.equal(400);
+      expect(data.error).to.not.be.null;
+    });
+
     it("should return status 500 if an error is thrown", async function () {
       td.when(locationService.getLocationDataFromZIP("97304"))
         .thenThrow(new Error("test error"));
