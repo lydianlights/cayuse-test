@@ -7,9 +7,4 @@ export default {
       message: "API does works!"
     });
   },
-
-  sayHello(req: Request, res: Response) {
-    res.status(200);
-    res.send("Hello World!");
-  },
 }
