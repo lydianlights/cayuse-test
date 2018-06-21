@@ -11,6 +11,9 @@ export class LocationService {
       return null;
     }
     const weatherInfo = await this.openWeather.getLocationInfo(zipCode);
+    if(!weatherInfo) {
+      return null;
+    }
     const timezone = await this.googleMaps.getTimeZone(weatherInfo.lat, weatherInfo.long);
     const elevation = await this.googleMaps.getElevation(weatherInfo.lat, weatherInfo.long);
     return new LocationData(

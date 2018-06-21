@@ -61,6 +61,16 @@ describe("LocationService", function() {
 
       expect(locationData).to.be.null;
     });
+
+    it("should return null if lat/long cannot be obtained", async function() {
+      const testZip = "97304";
+      td.when(locationService.validateZipCode(testZip)).thenReturn(true);
+      td.when(openWeather.getLocationInfo(testZip)).thenResolve(undefined);
+
+      const locationData = await locationService.getLocationDataFromZIP(testZip);
+
+      expect(locationData).to.be.null;
+    });
   });
 
   describe("validateZipCode", function() {
