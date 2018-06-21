@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { LocationData } from './LocationData';
+import { LocationData } from './location-data.model';
 
 describe("LocationData model", function() {
   describe("constructor", function() {
