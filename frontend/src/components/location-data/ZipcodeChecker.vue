@@ -31,16 +31,15 @@ export default {
   }
 
   .jumbotron {
+    color: $light-text-color;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: $light-text-color;
     height: fit-content;
 
     h1, h2 {
       letter-spacing: 0.04em;
       margin: 50px;
-
     }
 
     h1 {
@@ -63,16 +62,16 @@ export default {
     }
 
     button {
-      display: block;
       background-color: $accent-color;
       color: $light-text-color;
+      font-size: 24px;
+      text-transform: uppercase;
+      display: block;
       width: 250px;
       margin: 0px auto;
       padding: 10px 0px;
       border-radius: 4px;
       border: none;
-      text-transform: uppercase;
-      font-size: 24px;
     }
   }
 
