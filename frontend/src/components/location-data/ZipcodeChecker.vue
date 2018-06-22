@@ -3,17 +3,79 @@
     <div class="jumbotron">
       <h1>Let's get started!</h1>
       <h2>Enter a 5-digit zipcode below:</h2>
-      <form>
-        <input type="text" placeholder="xxxxx" aria-label="zipcode">
-        <button type="submit">Go!!</button>
+      <form @submit="submitZipcode">
+        <input v-model="zipCode" type="text" placeholder="xxxxx" aria-label="zipcode" maxlength="5" @input="validateZipCode()" :disabled="thinking">
+        <button type="submit" :disabled="thinking">{{thinking ? "Checking..." : "Go!!"}}</button>
+        <div class="errors">
+          <p class="error" v-show="submitted && errors.invalidZipCode">* Not a valid zip code!</p>
+          <p class="error" v-show="!submitted && errors.unrecognizedZipCode">* No data exists for that zipcode.</p>
+          <p class="error" v-show="!submitted && errors.serverError">* Uh-oh, the server broke...</p>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import locationService from '@/services/location.service';
+import { setTimeout } from 'timers';
+
 export default {
-  name: "zipcode-checker"
+  name: "zipcode-checker",
+  data: function() {
+    return {
+      zipCode: "",
+      submitted: false,
+      thinking: false,
+      errors: {
+        invalidZipCode: false,
+        unrecognizedZipCode: false,
+        serverError: false
+      },
+      locationData: {}
+    }
+  },
+  methods: {
+    validateZipCode() {
+      const isValid = locationService.validateZipCode(this.zipCode);
+      this.errors.invalidZipCode = !isValid;
+      return isValid;
+    },
+    submitZipcode(event) {
+      event.preventDefault();
+      this.resetErrors();
+      this.thinking = true;
+      this.submitted = true;
+      if(this.validateZipCode()) {
+        locationService.getLocationData(this.zipCode)
+        .then(data => {
+          this.thinking = false;
+          this.submitted = false;
+          this.locationData = data;
+        })
+        .catch(err => {
+          this.thinking = false;
+          this.submitted = false;
+          if(err.status === 400) {
+            this.errors.unrecognizedZipCode = true;
+          }
+          else {
+            this.errors.serverError = true;
+          }
+        });
+      }
+      else {
+        setTimeout(() => {
+          this.thinking = false;
+        }, 500);
+      }
+    },
+    resetErrors() {
+      Object.keys(this.errors).forEach(key => {
+        this.errors[key] = false;
+      });
+    }
+  }
 }
 </script>
 
@@ -28,6 +90,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: fit-content;
+    padding-bottom: 50px;
+    padding-top: 30px;
   }
 
   .jumbotron {
@@ -47,6 +112,17 @@ export default {
     }
     h2 {
       font-size: 50px;
+    }
+
+    .errors {
+      margin: 20px 0px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      .error {
+        color: $error-color;
+        padding: 5px 10px;
+        margin: 0px;
+      }
     }
 
     input {
@@ -72,6 +148,11 @@ export default {
       padding: 10px 0px;
       border-radius: 4px;
       border: none;
+      transition: background-color 0.2s;
+      transition-timing-function: ease-out;
+      &[disabled] {
+        background-color: lighten(desaturate($accent-color, 25%), 15%);
+      }
     }
   }
 
