@@ -1,6 +1,6 @@
 <template>
-  <div class="full-page">
-    <div class="jumbotron">
+  <full-page-container class="container">
+    <jumbotron>
       <h1>Let's get started!</h1>
       <h2>Enter a 5-digit zipcode below:</h2>
       <form @submit="submitZipcode">
@@ -12,16 +12,22 @@
           <p class="error" v-show="!submitted && errors.serverError">* Uh-oh, the server broke...</p>
         </div>
       </form>
-    </div>
-  </div>
+    </jumbotron>
+  </full-page-container>
 </template>
 
 <script>
+import FullPageContainer from '@/components/shared/FullPageContainer';
+import Jumbotron from '@/components/shared/Jumbotron';
 import locationService from '@/services/location.service';
 import { setTimeout } from 'timers';
 
 export default {
   name: "zipcode-checker",
+  components: {
+    FullPageContainer,
+    Jumbotron,
+  },
   data: function() {
     return {
       zipCode: "",
@@ -91,77 +97,24 @@ export default {
   @import 'styles/_theme';
   @import 'styles/_mixins';
 
-  .full-page {
-    @include fill-screen;
-    background-image: url('/static/img/bg.jpg');
+  .container {
+    background: url('/static/img/bg.jpg');
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: fit-content;
-    padding-bottom: 50px;
-    padding-top: 30px;
-  }
-
-  .jumbotron {
     color: $light-text-color;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
-
-    h1, h2 {
-      letter-spacing: 0.04em;
-      margin: 50px;
-    }
-
-    h1 {
-      font-size: 120px;
-    }
-    h2 {
-      font-size: 50px;
-    }
-
-    .errors {
-      margin: 20px 0px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
-      .error {
-        color: $error-color;
-        padding: 5px 10px;
-        margin: 0px;
-      }
-    }
-
-    input {
-      color: $dark-text-color;
-      display: block;
-      text-align: center;
-      font-size: 30px;
-      letter-spacing: 0.1em;
-      border-radius: 4px;
-      border: none;
-      padding: 8px 0px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      background-color: $accent-color;
-      color: $light-text-color;
-      font-size: 24px;
-      text-transform: uppercase;
-      display: block;
-      width: 250px;
-      margin: 0px auto;
-      padding: 10px 0px;
-      border-radius: 4px;
-      border: none;
-      transition: background-color 0.2s;
-      transition-timing-function: ease-out;
-      &[disabled] {
-        background-color: lighten(desaturate($accent-color, 25%), 15%);
-      }
-    }
   }
 
+  input {
+    letter-spacing: 0.1em;
+  }
+
+  .errors {
+    margin: 20px 0px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    .error {
+      color: $error-color;
+      padding: 5px 10px;
+      margin: 0px;
+    }
+  }
 </style>
