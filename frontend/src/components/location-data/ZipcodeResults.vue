@@ -10,7 +10,7 @@
         </tr>
         <tr>
           <td>Temperature</td>
-          <td>{{currentTempF}} °F</td>
+          <td>{{Math.floor(currentTempF)}} °F</td>
         </tr>
         <tr>
           <td>Timezone</td>
