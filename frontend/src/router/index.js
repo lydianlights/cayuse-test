@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ZipcodeChecker from '@/components/location-data/ZipcodeChecker';
 import ZipcodeResults from '@/components/location-data/ZipcodeResults';
+import NotFound from '@/components/error/NotFound';
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
           next();
         }
       }
+    },
+    {
+      path: '**',
+      name: '404',
+      component: NotFound
     }
   ]
 });
