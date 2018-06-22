@@ -31,4 +31,4 @@ After that the server is ready to be run.
 
 ## Technologies
 
-The API server is build using Node + Express. The client app is build using Vue.js.
+The API server is built using Node + Express. The client app is built using Vue.js.
