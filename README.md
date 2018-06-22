@@ -22,7 +22,7 @@ After that the server is ready to be run.
 
 ## Client
 
-* Open a terminal and navigate to the `client` directory.
+* Open a different terminal instance and navigate to the `client` directory.
 * Run `npm install`
 * Run `npm run build` to build the Vue app
 * Run `npm start` to start serving the page
