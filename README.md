@@ -24,6 +24,11 @@ After that the server is ready to be run.
 
 * Open a different terminal instance and navigate to the `client` directory.
 * Run `npm install`
-* Run `npm run build` to build the Vue app
+* Run `npm run build` to build the client app
 * Run `npm start` to start serving the page
 * Default port is `8080`
+* The site can now be loaded at `http://localhost:8080/`
+
+## Technologies
+
+The API server is build using Node + Express. The client app is build using Vue.js.
