@@ -5,6 +5,7 @@ import cors from 'cors';
 import { router } from './routes/routes';
 
 dotenv.config();
+process.env.PORT = process.env.PORT || '3000';
 
 const app = express();
 app.use(morgan('dev'));
