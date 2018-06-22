@@ -5,7 +5,7 @@ export default {
     return new Promise((resolve, reject) => {
       axios({
         method: 'GET',
-        url: 'http://localhost:3000/api/location-data',
+        url: `${process.env.API_ROOT}/api/location-data`,
         params: {
           zipCode: zipCode
         }
