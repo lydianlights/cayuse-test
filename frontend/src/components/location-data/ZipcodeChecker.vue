@@ -31,8 +31,7 @@ export default {
         invalidZipCode: false,
         unrecognizedZipCode: false,
         serverError: false
-      },
-      locationData: {}
+      }
     }
   },
   methods: {
@@ -51,7 +50,16 @@ export default {
         .then(data => {
           this.thinking = false;
           this.submitted = false;
-          this.locationData = data;
+          this.$router.push({
+            name: "zipcode-results",
+            params: {
+              zipCode: data.zipCode,
+              cityName: data.cityName,
+              currentTempF: data.currentTempF,
+              timeZone: data.timeZone,
+              elevationFt: data.elevationFt
+            }
+          });
         })
         .catch(err => {
           this.thinking = false;
