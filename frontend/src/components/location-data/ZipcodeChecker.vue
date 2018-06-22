@@ -1,17 +1,25 @@
 <template>
   <full-page-container class="container">
     <jumbotron>
-      <h1>Let's get started!</h1>
-      <h2>Enter a 5-digit zipcode below:</h2>
-      <form @submit="submitZipcode">
-        <input v-model="zipCode" type="text" placeholder="xxxxx" aria-label="zipcode" maxlength="5" @input="validateZipCode()" :disabled="thinking">
-        <button type="submit" :disabled="thinking">{{thinking ? "Checking..." : "Go!!"}}</button>
-        <div class="errors">
-          <p class="error" v-show="submitted && errors.invalidZipCode">* Not a valid zip code!</p>
-          <p class="error" v-show="!submitted && errors.unrecognizedZipCode">* No data exists for that zipcode.</p>
-          <p class="error" v-show="!submitted && errors.serverError">* Uh-oh, the server broke...</p>
-        </div>
-      </form>
+      <transition name="vertical-fade" appear>
+        <h1>Let's get started!</h1>
+      </transition>
+      <transition name="vertical-fade-delay" appear>
+        <h2>Enter a 5-digit zipcode below:</h2>
+      </transition>
+        <form @submit="submitZipcode">
+          <transition name="vertical-fade-delay" appear>
+            <input v-model="zipCode" ref="zipcodeInput" type="text" placeholder="xxxxx" aria-label="zipcode" maxlength="5" @input="validateZipCode()" :disabled="thinking">
+          </transition>
+          <transition name="vertical-fade-delay" appear>
+            <button type="submit" :disabled="thinking">{{thinking ? "Checking..." : "Go!!"}}</button>
+          </transition>
+          <div class="errors">
+            <p class="error" v-show="submitted && errors.invalidZipCode">* Not a valid zip code!</p>
+            <p class="error" v-show="!submitted && errors.unrecognizedZipCode">* No data exists for that zipcode.</p>
+            <p class="error" v-show="!submitted && errors.serverError">* Uh-oh, the server broke...</p>
+          </div>
+        </form>
     </jumbotron>
   </full-page-container>
 </template>
@@ -39,6 +47,9 @@ export default {
         serverError: false
       }
     }
+  },
+  mounted: function() {
+    this.$refs.zipcodeInput.focus();
   },
   methods: {
     validateZipCode() {

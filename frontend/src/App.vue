@@ -64,4 +64,24 @@ export default {
     border: none;
   }
 
+  // Global animations
+  .vertical-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+
+  .vertical-fade-enter {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  .vertical-fade-delay-enter-active {
+    transition: all 0.3s ease;
+    transition-delay: 0.5s;
+  }
+
+  .vertical-fade-delay-enter {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
 </style>

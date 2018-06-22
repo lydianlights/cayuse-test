@@ -1,28 +1,30 @@
 <template>
   <full-page-container>
-    <jumbotron>
-      <h2>Some info you might like about...</h2>
-      <h1>{{zipCode}}</h1>
-      <table>
-        <tr>
-          <td>City</td>
-          <td>{{cityName}}</td>
-        </tr>
-        <tr>
-          <td>Temperature</td>
-          <td>{{Math.floor(currentTempF)}} °F</td>
-        </tr>
-        <tr>
-          <td>Timezone</td>
-          <td>{{timeZone}}</td>
-        </tr>
-        <tr>
-          <td>Elevation</td>
-          <td>{{elevationFt}} ft</td>
-        </tr>
-      </table>
-      <router-link tag="button" :to="{name: 'zipcode-checker'}">Back</router-link>
-    </jumbotron>
+    <transition name="vertical-fade" appear>
+      <jumbotron>
+        <h2>Some info you might like about...</h2>
+        <h1>{{zipCode}}</h1>
+        <table>
+          <tr>
+            <td>City</td>
+            <td>{{cityName}}</td>
+          </tr>
+          <tr>
+            <td>Temperature</td>
+            <td>{{Math.floor(currentTempF)}} °F</td>
+          </tr>
+          <tr>
+            <td>Timezone</td>
+            <td>{{timeZone}}</td>
+          </tr>
+          <tr>
+            <td>Elevation</td>
+            <td>{{elevationFt}} ft</td>
+          </tr>
+        </table>
+        <router-link tag="button" :to="{name: 'zipcode-checker'}">Back</router-link>
+      </jumbotron>
+    </transition>
   </full-page-container>
 </template>
 
