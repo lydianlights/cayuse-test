@@ -108,12 +108,12 @@ export default {
   }
 
   .errors {
-    margin: 20px 0px;
+    margin: 40px 0px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     .error {
       color: $error-color;
-      padding: 5px 10px;
+      padding: 13px;
       margin: 0px;
     }
   }

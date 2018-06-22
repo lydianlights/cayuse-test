@@ -17,13 +17,26 @@ export default {
   @import 'styles/_mixins';
   @import 'styles/_resets';
 
-  h1, h2 {
+  h1, h2, h3, h4 {
     @include header-font;
     letter-spacing: 0.04em;
   }
 
-  p, button, input {
+  p, button, input, li, td {
     @include text-font;
+  }
+
+  table {
+    border-collapse: collapse;
+    td {
+      border: 1px solid #ffffff;
+    }
+    tr {
+      background-color: rgba(0, 0, 0, .4);
+      &:nth-child(even) {
+        background-color: rgba(255, 255, 255, .4)
+      }
+    }
   }
 
   button {
