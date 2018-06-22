@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo|Raleway');
+
+@mixin header-font {
+  font-family: 'Raleway', sans-serif;
+}
+
+@mixin text-font {
+  font-family: 'Arimo', sans-serif;
+}
+
+$light-text-color: #fefefe;
+$dark-text-color: #000000;
+
+$accent-color: #2a6981;
